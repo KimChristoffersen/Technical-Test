@@ -1,0 +1,28 @@
+﻿@model TekniskOpgave.DAL.Models.Overmontor
+
+@{
+    ViewData["Title"] = "Slet";
+}
+
+<h1>Delete</h1>
+
+<h3>Er du sikker på du vil slette overmontøren @Html.DisplayFor(model => model.OvermontorNavn)?</h3>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<div>
+  
+    </dl>
+
+        <form asp-action="Delete" method="post">
+        @* Skjult input, så ID'et bliver sendt korrekt *@
+        <input type="hidden" name="id" value="@Model.OvermontorId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+</div>

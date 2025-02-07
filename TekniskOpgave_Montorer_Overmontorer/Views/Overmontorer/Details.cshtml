@@ -1,0 +1,48 @@
+﻿@model TekniskOpgave.DAL.Models.Overmontor
+
+@{
+    ViewData["Title"] = "Overmontør Detaljer";
+}
+
+<h1>@Model.OvermontorNavn</h1>
+<p><strong>Telefonnummer:</strong> @Model.OvermontorTelefonnummer</p>
+
+@if (TempData["ErrorMessage"] != null)
+{
+	<div class="alert alert-danger">
+		@TempData["ErrorMessage"]
+	</div>
+}
+
+
+<h3>Montører:</h3>
+<ul>
+    @foreach (var montor in Model.Montorer)
+    {
+        <li>
+            @montor.MontorNavn (Telefon: @montor.MontorTelefonnummer)
+            @* Knappen for at fjerne montør *@
+            <a href="@Url.Action("RemoveMontorFromOvermontor", "Overmontorer", new { montorId = montor.MontorId, overmontorId = Model.OvermontorId })">Fjern Montør</a>
+        </li>
+    }
+</ul>
+
+<h4>Tilføj Montør til Overmontør</h4>
+<form method="post" action="@Url.Action("AddMontorToOvermontor", "Overmontorer")">
+    <div>
+        <label for="montorId">Montør:</label>
+        <select name="montorId" id="montorId">
+            @foreach (var montor in ViewBag.AvailableMontors as List<TekniskOpgave.DAL.Models.Montor>)
+            {
+                <option value="@montor.MontorId">@montor.MontorNavn</option>
+            }
+        </select>
+    </div>
+
+    @* Skjult input-felt for overmontorId *@
+    <input type="hidden" name="overmontorId" value="@Model.OvermontorId" />
+
+    <button type="submit">Tilknyt Montør</button>
+</form>
+
+<a href="@Url.Action("Index", "Overmontorer")">Tilbage til liste</a>

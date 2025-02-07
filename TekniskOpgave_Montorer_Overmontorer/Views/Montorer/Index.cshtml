@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TekniskOpgave.DAL.Models.Montor>
+
+@{
+    ViewData["Title"] = "Montører";
+}
+
+<h1>Montører</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Montorer")">Opret ny montør</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Telefonnummer</th>
+            <th>Handling</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var montor in Model)
+        {
+            <tr>
+                <td> <a href="@Url.Action("Details", "Montorer", new { id = montor.MontorId })">@montor.MontorNavn</a></td>
+                <td>@montor.MontorTelefonnummer</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Montorer", new { id = montor.MontorId })">Rediger</a>
+                    |
+                    <a href="@Url.Action("Delete", "Montorer", new { id = montor.MontorId })" onclick="return confirm('Er du sikker på, at du vil slette denne montør?')">Slet</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

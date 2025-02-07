@@ -1,0 +1,29 @@
+﻿@model TekniskOpgave.DAL.Models.Montor
+
+@{
+    ViewData["Title"] = "Montør Detaljer";
+}
+
+<h1>Montør Detaljer</h1>
+
+<div>
+    <h2>@Model.MontorNavn</h2>
+    <p><strong>Telefonnummer:</strong> @Model.MontorTelefonnummer</p>
+
+    <h3>Overmontører:</h3>
+    @if (Model.Overmontorer.Any())
+    {
+        <ul>
+            @foreach (var overmontor in Model.Overmontorer)
+            {
+                <li>@overmontor.OvermontorNavn (Telefon: @overmontor.OvermontorTelefonnummer)</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No overmontors assigned.</p>
+    }
+</div>
+
+<a href="@Url.Action("Index", "Montorer")">Tilbage til liste</a>

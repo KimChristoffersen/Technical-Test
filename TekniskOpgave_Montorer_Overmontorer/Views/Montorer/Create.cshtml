@@ -1,0 +1,33 @@
+﻿@model TekniskOpgave.DAL.Models.Montor
+
+@{
+    ViewData["Title"] = "Opret Montør";
+}
+
+<h1>Opret Montør</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="MontorNavn">Navn</label>
+        <input type="text" class="form-control" id="MontorNavn" name="MontorNavn" value="@Model.MontorNavn" required />
+    </div>
+
+    <div class="form-group">
+        <label for="MontorTelefonnummer">Telefonnummer</label>
+        <input type="text" class="form-control" id="MontorTelefonnummer" name="MontorTelefonnummer" value="@Model.MontorTelefonnummer" required />
+    </div>
+
+    <!-- Dropdown for valg af overmontør -->
+    <div class="form-group">
+        <label for="OvermontorId">Vælg Overmontør</label>
+        <select class="form-control" id="OvermontorId" name="OvermontorId" required>
+            <option value="">--Vælg Overmontør--</option>
+            @foreach (var overmontor in ViewBag.Overmontorer as SelectList)
+            {
+                <option value="@overmontor.Value">@overmontor.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Opret Montør</button>
+</form>

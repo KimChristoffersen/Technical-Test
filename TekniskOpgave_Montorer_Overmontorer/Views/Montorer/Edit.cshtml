@@ -1,0 +1,27 @@
+﻿@model TekniskOpgave.DAL.Models.Montor
+
+@{
+    ViewData["Title"] = "Edit Montor";
+}
+
+<h1>Edit Montor</h1>
+
+<form method="post" asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="MontorNavn" class="control-label"></label>
+        <input asp-for="MontorNavn" class="form-control" />
+        <span asp-validation-for="MontorNavn" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MontorTelefonnummer" class="control-label"></label>
+        <input asp-for="MontorTelefonnummer" class="form-control" />
+        <span asp-validation-for="MontorTelefonnummer" class="text-danger"></span>
+    </div>
+
+    <!-- Skjult input for ID -->
+    <input type="hidden" asp-for="MontorId" />
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<a href="@Url.Action("Index", "Montorer")">Back to List</a>

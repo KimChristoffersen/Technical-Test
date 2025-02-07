@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TekniskOpgave.DAL.Models.Overmontor>
+
+@{
+    ViewData["Title"] = "Overmontører";
+}
+
+<h1>Overmontører</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Overmontorer")">Opret ny overmontør</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Telefonnummer</th>
+            <th>Handling</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var overmontor in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("Details", "Overmontorer", new { id = overmontor.OvermontorId })">@overmontor.OvermontorNavn</a></td>
+                <td>@overmontor.OvermontorTelefonnummer</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Overmontorer", new { id = overmontor.OvermontorId })">Rediger</a>
+                    |
+                    <a href="@Url.Action("Delete", "Overmontorer", new { id = overmontor.OvermontorId })">Slet</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
